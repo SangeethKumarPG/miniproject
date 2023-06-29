@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Index
+{%endblock%}
+{% block content %}
+<div class="d-flex h-200 text-center text-white bg-primary vh-100">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto" style="visibility:hidden; !important">
+      <div>
+        <h3 class="float-md-start mb-0">Cover</h3>
+      </div>
+    </header>
+  
+    <main class="px-3">
+      <h1>Cover your page.</h1>
+      <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+      <p class="lead" style="visibility:hidden; !important">
+        <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+      </p>
+    </main>
+  
+    <footer class="mt-auto text-white-50" style="visibility:hidden; !important">
+      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+  </div>
+</div>
+<br>
+  <div class="container">
+    {% for post in object_list%}
+        <a href="post/{{post.id}}" style="text-decoration:none">
+            <div class="card mb-5">
+                <img class="card-img-top" alt="..." {%if post.preview_image %}src="{{post.preview_image.url}}" {% else %} style="visibility:hidden; !important" {% endif %}>
+                <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{ post.sub_title }}</p>
+                <p class="card-text"><small class="text-muted">Posted on {{post.date}} by {%if post.author == null %} Unknown {%else%}{{post.author.first_name}}{{post.author.last_name}}{%endif%}</small></p>
+            </div>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+{% endblock %}
+

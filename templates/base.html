@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+
+        {% endblock %}
+    </title>
+    {# Load the tag library #}
+    {% load django_bootstrap5 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4"><img src="{% static 'logo.png' %}" class="img-thumbnail" alt="..." style="width:60px; height:60px;">University of Calicut CCSIT Kodungallur</span>
+          </a>
+    
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Admission</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Departments</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Faculty</a></li>
+            {% comment %} <li class="nav-item"><a href="#" class="nav-link">Login</a></li> {% endcomment %}
+            <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="#">Student</a></li>
+                <li><a class="dropdown-item" href="#">Faculty</a></li>
+                {% comment %} <li><hr class="dropdown-divider" style="visibility:hidden; !important"></li>
+                <li><a class="dropdown-item" href="#" style="visibility:hidden; !important">Something else here</a></li> {% endcomment %}
+              </ul>
+            </li>
+          </ul>
+        </header>
+        {% block content%}
+
+        {%endblock%}
+
+</body>
+</html>

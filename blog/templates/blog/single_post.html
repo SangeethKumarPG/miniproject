@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{post.title}}
+{%endblock%}
+{%block content%}
+    <div class="container">
+        <h1>{{post.title}}</h1>
+        <br>
+        <h4>{{post.sub_title}}</h4>
+        <br>
+        <hr>
+        <p>Posted by {%if post.author == null %} Unknown {%else%}{{post.author.first_name}}{{post.author.last_name}}{%endif%} on {{post.date}}</p>
+    <div>
+    <div class="container">
+        <div style="width: 90vw;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;
+        ">  
+            {{post.content|safe}}
+        </div>
+    </div>
+    <br>
+    <div class="text-center container">
+        <button class="btn btn-primary"><a href="/updatepost/{{post.id}}" style="text-decoration:none;color:white;">Edit</a></button>
+    </div>
+{% endblock %}
+
+
+
