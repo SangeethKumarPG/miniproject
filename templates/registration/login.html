@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="text-center">
+<main class="form-signin" style="width: 50%;
+border-radius : 10px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+padding: 20px;
+margin:auto;
+
+">
+    <form method="POST">
+        {% csrf_token %}
+
+      {% comment %} <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> {% endcomment %}
+      <h1 class="h3 mb-3 fw-normal">Login</h1>
+      {{form.as_p}}
+{% comment %}         
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+  
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© 2017–2021</p> {% endcomment %}
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </main>
+</div>
+{% endblock %}

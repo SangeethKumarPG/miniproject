@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+Register Student
+{% endblock %}
+{% block content %}
+<div class="text-center container">
+    <h1>Student Registration</h1>
+</div>
+<hr>
+    <div class="container">
+        <div style="width: 90vw;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;"> 
+        <form action="/register/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xl-6 mb-3">
+                    {{ field.label_tag }}
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xl-6 mb-3">
+                    {{field}}
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+
+                <button class="btn btn-primary form-control">Submit</button>
+
+        </form>
+    </div>
+    </div>
+
+{% endblock %}
