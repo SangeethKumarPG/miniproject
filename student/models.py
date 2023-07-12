@@ -79,8 +79,24 @@ class Registration(models.Model):
     fees = models.OneToOneField(
         SemesterFees,
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        blank=True
     )
     def __str__(self):
         return f"{self.first_name} {self.last_name} {self.id}"
     
+
+class FeeStructure(models.Model):
+    program_name = models.CharField(max_length=50, blank=True, null=True)
+    semester1 = models.FloatField(blank=True, null=True)
+    semester2 = models.FloatField(blank=True, null=True)
+    semester3 = models.FloatField(blank=True, null=True)
+    semester4 = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return self.program_name
+    
+class FeePaymentDetail(models.Model):
+    rollno = models.CharField(max_length=50)
+    transaction_id = models.CharField(max_length=100, unique=True, null=False)
+    date = models.DateTimeField()

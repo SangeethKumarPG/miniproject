@@ -15,4 +15,5 @@ class RegistrationForm(forms.ModelForm):
             'selected_course',
             'date_of_admission',
             'roll_no',
+            'fees'
         ]

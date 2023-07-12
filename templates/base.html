@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static%}
+{% load custom_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,6 +32,16 @@
             <li class="nav-item"><a href="#" class="nav-link">Faculty</a></li>
             {% comment %} <li class="nav-item"><a href="#" class="nav-link">Login</a></li> {% endcomment %}
             <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            {% if user.is_authenticated %}
+            {% if user|user_belongs_to_group:"student"  %}
+                  <li class="nav-item"><a href="{% url 'feepayment'%}" class="nav-link">Pay Fees</a></li>
+            {% endif %}
+            {% endif %}
+            {% if user.is_authenticated %}
+            {% if user|user_belongs_to_group:"editor"  %}
+                  <li class="nav-item"><a href="{% url 'new_post'%}" class="nav-link">New Post</a></li>
+            {% endif %}
+            {% endif %}
             {% if user.is_authenticated %}
               <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
             {%else%}

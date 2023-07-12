@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+
+Payment success
+
+{% endblock %}
+{% block content %}
+    <div class="container" style="margin:auto;
+        width:50%;
+        padding: 20px;
+        box-shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h1 style="color:green">Payment Success</h1>
+    </div>
+
+    <script>
+            document.addEventListener("DOMContentLoaded", async() =>{
+               let params= new URLSearchParams(location.search);
+               console.log(params.get('payment_id'));
+               request_params = {
+                'payment_id' : params.get('payment_id'),
+                'payment_request_id' : params.get('payment_request_id')
+               };
+               const queryString = new URLSearchParams(request_params).toString();
+               const url = "{% url 'isfeepaid'%}";
+               const response = await fetch(url+'?'+queryString);
+               const data = await response.json();
+               console.log(data);
+            });
+
+    </script>
+{% endblock %}
+
+
+

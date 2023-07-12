@@ -17,7 +17,7 @@ class MainView(ListView):
     model = Post
     def get_queryset(self):
         data =  super().get_queryset()
-        return data.order_by("-date")[:3]
+        return data.order_by("-date")
 
 class CreatePostView(CreateView):
     form_class = PostForm

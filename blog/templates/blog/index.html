@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
     Index
 {%endblock%}
 {% block content %}
+
+
 <div class="d-flex h-200 text-center text-white bg-primary vh-100">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto" style="visibility:hidden; !important">
@@ -25,19 +29,44 @@
   </div>
 </div>
 <br>
-  <div class="container">
-    {% for post in object_list%}
-        <a href="post/{{post.id}}" style="text-decoration:none">
-            <div class="card mb-5">
-                <img class="card-img-top" alt="..." {%if post.preview_image %}src="{{post.preview_image.url}}" {% else %} style="visibility:hidden; !important" {% endif %}>
-                <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{ post.sub_title }}</p>
-                <p class="card-text"><small class="text-muted">Posted on {{post.date}} by {%if post.author == null %} Unknown {%else%}{{post.author.first_name}}{{post.author.last_name}}{%endif%}</small></p>
-            </div>
-            </div>
-        </a>
-    {% endfor %}
+<div class="container" style="width:50vw; height:50vh;">
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for item in object_list %}
+
+    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+      <a href="/post/{{ item.id }}">
+      {% if item.preview_image %}
+        <img src="{{ item.preview_image.url }}" class="d-block w-100" alt="{{ item.title }}">
+      {% endif %}
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.sub_title }}</p>
+      </div>
     </div>
+  </a>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+<script>
+  // JavaScript code to enable automatic sliding
+  document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.getElementById("carouselExample");
+    const carouselInstance = new bootstrap.Carousel(carousel, {
+      interval: 3000, // Set the interval time in milliseconds (e.g., 3000 = 3 seconds)
+      pause: "hover" // Pause the slider on mouse hover
+    });
+  });
+</script>
+
 {% endblock %}
 
